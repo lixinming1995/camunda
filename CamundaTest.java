@@ -1,4 +1,3 @@
-
 package com.lixinming.aliyun;
 
 import com.alibaba.fastjson.JSON;
@@ -31,18 +30,6 @@ import java.util.List;
  */
 public class Camunda {
     public static void main(String[] args) throws Exception {
-        //step3:把需要解析的xml文件加载到一个document对象中
-        /*SAXReader sr = new SAXReader();
-        System.out.println(11);
-        File files = new File("C:\\Users\\lixinming\\Desktop\\告警.bpmn");
-        //step1:获得DocumentBuilderFactory
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        //step2:获得DocumentBuilder
-        DocumentBuilder db = factory.newDocumentBuilder();
-        //step3:把需要解析的xml文件加载到一个document对象中
-        Document document = db.parse(files);
-
-        NodeList elementsByTagName = document.getElementsByTagName("zeebe:userTaskForm");*/
         File files = new File("C:\\Users\\lixinming\\Desktop\\告警.bpmn");
         InputStream input = new FileInputStream(files);
         //byte[] bytes = new byte[input.available()];
@@ -66,10 +53,11 @@ public class Camunda {
             DomElement domElement = modelElementInstance.getDomElement();
             String localName = domElement.getLocalName();
             String namespaceURI = domElement.getNamespaceURI();
-            //获取需要得节点ID
-            String attribute = domElement.getAttribute("aaa");
             System.out.println(localName);
             System.out.println(namespaceURI);
+            //获取需要得模板节点formKey属性
+            String attribute = domElement.getAttribute("formKey");
+            System.out.println(attribute);
             DomDocument document = domElement.getDocument();
             DOMSource domSource = document.getDomSource();
             //获取camunda得NODE
